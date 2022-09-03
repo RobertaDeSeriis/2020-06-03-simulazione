@@ -1,6 +1,6 @@
 package it.polito.tdp.PremierLeague.model;
 
-public class Action {
+public class Action implements Comparable<Action>{
 	Integer playerID;
 	Integer matchID;
 	Integer teamID;
@@ -152,6 +152,12 @@ public class Action {
 	public String toString() {
 		return "Action [playerID=" + playerID + ", matchID=" + matchID + ", starts=" + starts + ", goals=" + goals
 				+ ", timePlayed=" + timePlayed + "]";
+	}
+
+
+	@Override
+	public int compareTo(Action o) {
+		return -(this.timePlayed-o.timePlayed);
 	}
 	
 	

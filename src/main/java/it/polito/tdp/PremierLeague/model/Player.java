@@ -1,13 +1,17 @@
 package it.polito.tdp.PremierLeague.model;
 
-public class Player {
+import java.util.Objects;
+
+public class Player implements Comparable<Player>{
 	Integer playerID;
 	String name;
+	Integer t; 
 	
-	public Player(Integer playerID, String name) {
+	public Player(Integer playerID, String name, Integer t) {
 		super();
 		this.playerID = playerID;
 		this.name = name;
+		this.t= t; 
 	}
 	
 	public Integer getPlayerID() {
@@ -22,13 +26,21 @@ public class Player {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+
+	public Integer getT() {
+		return t;
+	}
+
+	public void setT(Integer t) {
+		this.t = t;
+	}
+
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((playerID == null) ? 0 : playerID.hashCode());
-		return result;
+		return Objects.hash(name, playerID, t);
 	}
 
 	@Override
@@ -40,18 +52,20 @@ public class Player {
 		if (getClass() != obj.getClass())
 			return false;
 		Player other = (Player) obj;
-		if (playerID == null) {
-			if (other.playerID != null)
-				return false;
-		} else if (!playerID.equals(other.playerID))
-			return false;
-		return true;
+		return Objects.equals(name, other.name) && Objects.equals(playerID, other.playerID)
+				&& Objects.equals(t, other.t);
 	}
 
 	@Override
 	public String toString() {
-		return playerID + " - " + name;
+		return playerID + " - " + name + " - " + t;
 	}
+
+	@Override
+	public int compareTo(Player o) {
+		return -(this.t-o.t); //ordine decrescente del tempo
+	}
+
 	
 	
 	

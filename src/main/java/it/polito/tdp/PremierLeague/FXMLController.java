@@ -5,6 +5,7 @@
 package it.polito.tdp.PremierLeague;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.PremierLeague.model.Model;
@@ -44,7 +45,14 @@ public class FXMLController {
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
-
+    	txtResult.clear();
+    	double goal=0; 
+    	try {
+    		goal=Double.parseDouble(this.txtGoals.getText()); 
+    	}catch(NumberFormatException e) {
+    		e.printStackTrace();
+    	}
+    	txtResult.appendText(model.creaGrafo(goal));
     }
 
     @FXML
